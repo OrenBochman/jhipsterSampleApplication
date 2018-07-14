@@ -1,0 +1,31 @@
+entity Company {
+	companyName String required 
+}
+entity Customer {
+	customerName String required
+}
+entity Coupon {
+    title String required
+    start Long required
+    end Long required
+  	amount Long required
+    couponType String required
+    message String required
+    price Double required
+    image String required
+}
+relationship ManyToMany {
+	Customer to Coupon
+}
+relationship OneToOne {
+	Company to Coupon
+    Company to User
+    Customer to User
+}
+// Set pagination options
+paginate Company, Customer, Coupon with infinite-scroll
+dto * with mapstruct
+// Set service options to all except few
+service all with serviceImpl
+// Set an angular suffix
+angularSuffix * with mySuffix
