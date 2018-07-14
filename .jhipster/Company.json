@@ -1,0 +1,40 @@
+{
+    "name": "Company",
+    "fields": [
+        {
+            "fieldName": "companyName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "company",
+            "otherEntityName": "coupon",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "company"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "company",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "company"
+        }
+    ],
+    "changelogDate": "20180714191045",
+    "entityTableName": "company",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "mySuffix"
+}
