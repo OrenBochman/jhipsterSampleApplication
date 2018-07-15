@@ -1,0 +1,61 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="coupon">
+            <h2><span>Coupon</span> {{coupon.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Title</span></dt>
+                <dd>
+                    <span>{{coupon.title}}</span>
+                </dd>
+                <dt><span>Start</span></dt>
+                <dd>
+                    <span>{{coupon.start}}</span>
+                </dd>
+                <dt><span>End</span></dt>
+                <dd>
+                    <span>{{coupon.end}}</span>
+                </dd>
+                <dt><span>Amount</span></dt>
+                <dd>
+                    <span>{{coupon.amount}}</span>
+                </dd>
+                <dt><span>Coupon Type</span></dt>
+                <dd>
+                    <span>{{coupon.couponType}}</span>
+                </dd>
+                <dt><span>Message</span></dt>
+                <dd>
+                    <span>{{coupon.message}}</span>
+                </dd>
+                <dt><span>Price</span></dt>
+                <dd>
+                    <span>{{coupon.price}}</span>
+                </dd>
+                <dt><span>Image</span></dt>
+                <dd>
+                    <span>{{coupon.image}}</span>
+                </dd>
+                <dt><span>Company</span></dt>
+                <dd>
+                    <div *ngIf="coupon.companyId">
+                        <a [routerLink]="['/company-my-suffix', coupon.companyId, 'view']">{{coupon.companyId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/coupon-my-suffix', coupon.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
