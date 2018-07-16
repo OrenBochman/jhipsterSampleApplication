@@ -14,6 +14,8 @@ public class CompanyDTO implements Serializable {
     @NotNull
     private String companyName;
 
+    private String companyAddress;
+
     private Long userId;
 
     private String userLogin;
@@ -32,6 +34,14 @@ public class CompanyDTO implements Serializable {
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
+    }
+
+    public String getCompanyAddress() {
+        return companyAddress;
+    }
+
+    public void setCompanyAddress(String companyAddress) {
+        this.companyAddress = companyAddress;
     }
 
     public Long getUserId() {
@@ -76,6 +86,7 @@ public class CompanyDTO implements Serializable {
         return "CompanyDTO{" +
             "id=" + getId() +
             ", companyName='" + getCompanyName() + "'" +
+            ", companyAddress='" + getCompanyAddress() + "'" +
             ", user=" + getUserId() +
             ", user='" + getUserLogin() + "'" +
             "}";

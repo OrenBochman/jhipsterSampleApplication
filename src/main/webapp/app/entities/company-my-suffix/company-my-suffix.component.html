@@ -16,6 +16,7 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
             <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="companyName"><span>Company Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="companyAddress"><span>Company Address</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="userLogin"><span>User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
@@ -24,6 +25,7 @@
             <tr *ngFor="let company of companies ;trackBy: trackId">
                 <td><a [routerLink]="['/company-my-suffix', company.id, 'view' ]">{{company.id}}</a></td>
                 <td>{{company.companyName}}</td>
+                <td>{{company.companyAddress}}</td>
                 <td>
                     {{company.userLogin}}
                 </td>
