@@ -27,6 +27,9 @@ public class Company implements Serializable {
     @Column(name = "company_name", nullable = false)
     private String companyName;
 
+    @Column(name = "company_address")
+    private String companyAddress;
+
     @OneToOne
     @JoinColumn(unique = true)
     private User user;
@@ -51,6 +54,19 @@ public class Company implements Serializable {
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
+    }
+
+    public String getCompanyAddress() {
+        return companyAddress;
+    }
+
+    public Company companyAddress(String companyAddress) {
+        this.companyAddress = companyAddress;
+        return this;
+    }
+
+    public void setCompanyAddress(String companyAddress) {
+        this.companyAddress = companyAddress;
     }
 
     public User getUser() {
@@ -92,6 +108,7 @@ public class Company implements Serializable {
         return "Company{" +
             "id=" + getId() +
             ", companyName='" + getCompanyName() + "'" +
+            ", companyAddress='" + getCompanyAddress() + "'" +
             "}";
     }
 }

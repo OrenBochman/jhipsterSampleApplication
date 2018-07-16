@@ -45,6 +45,9 @@ public class CompanyResourceIntTest {
     private static final String DEFAULT_COMPANY_NAME = "AAAAAAAAAA";
     private static final String UPDATED_COMPANY_NAME = "BBBBBBBBBB";
 
+    private static final String DEFAULT_COMPANY_ADDRESS = "AAAAAAAAAA";
+    private static final String UPDATED_COMPANY_ADDRESS = "BBBBBBBBBB";
+
     @Autowired
     private CompanyRepository companyRepository;
 
@@ -91,7 +94,8 @@ public class CompanyResourceIntTest {
      */
     public static Company createEntity(EntityManager em) {
         Company company = new Company()
-            .companyName(DEFAULT_COMPANY_NAME);
+            .companyName(DEFAULT_COMPANY_NAME)
+            .companyAddress(DEFAULT_COMPANY_ADDRESS);
         return company;
     }
 
@@ -117,6 +121,7 @@ public class CompanyResourceIntTest {
         assertThat(companyList).hasSize(databaseSizeBeforeCreate + 1);
         Company testCompany = companyList.get(companyList.size() - 1);
         assertThat(testCompany.getCompanyName()).isEqualTo(DEFAULT_COMPANY_NAME);
+        assertThat(testCompany.getCompanyAddress()).isEqualTo(DEFAULT_COMPANY_ADDRESS);
     }
 
     @Test
@@ -169,7 +174,8 @@ public class CompanyResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(company.getId().intValue())))
-            .andExpect(jsonPath("$.[*].companyName").value(hasItem(DEFAULT_COMPANY_NAME.toString())));
+            .andExpect(jsonPath("$.[*].companyName").value(hasItem(DEFAULT_COMPANY_NAME.toString())))
+            .andExpect(jsonPath("$.[*].companyAddress").value(hasItem(DEFAULT_COMPANY_ADDRESS.toString())));
     }
     
 
@@ -184,7 +190,8 @@ public class CompanyResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(company.getId().intValue()))
-            .andExpect(jsonPath("$.companyName").value(DEFAULT_COMPANY_NAME.toString()));
+            .andExpect(jsonPath("$.companyName").value(DEFAULT_COMPANY_NAME.toString()))
+            .andExpect(jsonPath("$.companyAddress").value(DEFAULT_COMPANY_ADDRESS.toString()));
     }
     @Test
     @Transactional
@@ -207,7 +214,8 @@ public class CompanyResourceIntTest {
         // Disconnect from session so that the updates on updatedCompany are not directly saved in db
         em.detach(updatedCompany);
         updatedCompany
-            .companyName(UPDATED_COMPANY_NAME);
+            .companyName(UPDATED_COMPANY_NAME)
+            .companyAddress(UPDATED_COMPANY_ADDRESS);
         CompanyDTO companyDTO = companyMapper.toDto(updatedCompany);
 
         restCompanyMockMvc.perform(put("/api/companies")
@@ -220,6 +228,7 @@ public class CompanyResourceIntTest {
         assertThat(companyList).hasSize(databaseSizeBeforeUpdate);
         Company testCompany = companyList.get(companyList.size() - 1);
         assertThat(testCompany.getCompanyName()).isEqualTo(UPDATED_COMPANY_NAME);
+        assertThat(testCompany.getCompanyAddress()).isEqualTo(UPDATED_COMPANY_ADDRESS);
     }
 
     @Test

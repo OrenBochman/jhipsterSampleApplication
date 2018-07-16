@@ -32,6 +32,8 @@ describe('Company e2e test', () => {
         companyComponentsPage.clickOnCreateButton();
         companyUpdatePage.setCompanyNameInput('companyName');
         expect(companyUpdatePage.getCompanyNameInput()).toMatch('companyName');
+        companyUpdatePage.setCompanyAddressInput('companyAddress');
+        expect(companyUpdatePage.getCompanyAddressInput()).toMatch('companyAddress');
         companyUpdatePage.userSelectLastOption();
         companyUpdatePage.save();
         expect(companyUpdatePage.getSaveButton().isPresent()).toBeFalsy();

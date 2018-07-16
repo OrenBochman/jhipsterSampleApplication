@@ -18,6 +18,7 @@ export class CompanyUpdatePage {
     saveButton = element(by.id('save-entity'));
     cancelButton = element(by.id('cancel-save'));
     companyNameInput = element(by.id('field_companyName'));
+    companyAddressInput = element(by.id('field_companyAddress'));
     userSelect = element(by.id('field_user'));
 
     getPageTitle() {
@@ -30,6 +31,14 @@ export class CompanyUpdatePage {
 
     getCompanyNameInput() {
         return this.companyNameInput.getAttribute('value');
+    }
+
+    setCompanyAddressInput(companyAddress): promise.Promise<void> {
+        return this.companyAddressInput.sendKeys(companyAddress);
+    }
+
+    getCompanyAddressInput() {
+        return this.companyAddressInput.getAttribute('value');
     }
 
     userSelectLastOption(): promise.Promise<void> {
